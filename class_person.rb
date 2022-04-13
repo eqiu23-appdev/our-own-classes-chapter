@@ -7,5 +7,35 @@
 #  - An instance method, age, that calculates the number of years between today and birthdate
 
 class Person
+  require("date")
   
+  attr_accessor :first_name
+  attr_accessor :last_name
+  attr_accessor :birthdate
+
+  def full_name
+    return self.first_name + " " + self.last_name
+  end
+
+  def age
+    dob = Date.parse(self.birthdate)
+    now = Date.today
+    age_in_days = now - dob
+    age_in_years = age_in_days / 365
+    return age_in_years.to_i
+  end
+
 end
+
+dev = Person.new
+dev.first_name = "James"
+dev.last_name = "Baldwin"
+dev.birthdate = "November 16, 1953"
+dev.full_name # => "James Baldwin"
+dev.age # => 67
+
+p dev.first_name
+p dev.last_name
+p dev.birthdate
+p dev.full_name
+p dev.age
